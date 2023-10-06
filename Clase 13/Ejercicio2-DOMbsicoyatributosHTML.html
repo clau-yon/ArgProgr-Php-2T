@@ -11,7 +11,12 @@
         <script>
         function muestra() {
             var textOcult = document.getElementById("adicional");
-            textOcult.className = "visible";
+            var enlace = document.getElementById("enlace");
+
+            if(textOcult.className == "oculto"){
+                textOcult.className = "visible";
+                enlace.style.display = "none";
+            }
         }
         </script>
         </head>

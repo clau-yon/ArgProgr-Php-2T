@@ -9,12 +9,14 @@
 			// Numero de enlaces de la pagina
 			enlaces = document.getElementsByTagName("a");
 			console.log("La pagina tiene "+enlaces.length + " enlaces");
+
 			// Direccion del penultimo enlace
 			if(enlaces.length >= 2){
 				let penultimoEnlace = enlaces[enlaces.length-2];
 				let direccionPenultimo = penultimoEnlace.href;
 				console.log("El penultimo enlace es " + direccionPenultimo);
 			}
+
 			// Numero de enlaces que apuntan a http://prueba/
 			let suma=0;
 			for (let i = 0; i < enlaces.length; i++) {
@@ -26,10 +28,12 @@
 			}
 			console.log("Número de enlaces que son iguales a http://prueba/: " + suma);
 			// Numero de enlaces del tercer p�rrafo
-			let parrafos = document.getElementsByTagName("p");
 			
-
-			
+			// Obtener el tercer párrafo por su índice 
+			var tercerParrafo = document.getElementsByTagName("p")[2];
+			var enlacesParrafo = tercerParrafo.getElementsByTagName("a");
+			var numeroDeEnlaces = enlacesParrafo.length;
+			console.log("El número de enlaces del tercer párrafo es de: " + numeroDeEnlaces);
 		}
 	</script>
 		</head>

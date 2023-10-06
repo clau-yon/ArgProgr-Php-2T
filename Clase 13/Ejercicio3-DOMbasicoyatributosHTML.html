@@ -6,7 +6,12 @@
     <title>Ejercicio 3</title>
     <script type="text/javascript">
     function anade() {
+        let nuevoElemento = document.createElement("li");
+        let nuevoContenido = document.createTextNode("Este es un nuevo elemento de lista");
+        nuevoElemento.appendChild(nuevoContenido);
     
+        let lista = document.getElementById("lista");
+        lista.appendChild(nuevoElemento);
     }
     </script>
     </head>
@@ -18,7 +23,7 @@
     <li>Phasellus libero</li>
     <li>Maecenas nisl arcu</li>
     </ul>
-    <input type="button" value="Añadir elemento" onclick="if (!window.__cfRLUnblockHandlers) return false; anade();">
+    <input type="button" value="Añadir elemento" onclick="anade();">
     
     
     </body></html>
