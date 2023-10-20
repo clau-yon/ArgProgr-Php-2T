@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio1</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .boton {
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+            border-radius: 20px;
+        }
+        .boton:hover {
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="datos" class="boton">Datos Aleatorios</button>
+    <div id="resultados"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Función para cargar datos aleatorios desde la API
+            function cargarDatosAleatorios() {
+                $.ajax({
+                    url: 'https://randomuser.me/api/',
+                    dataType: 'json',
+                    success: function(data) {
+                        var resultados = $('#resultados');
+                        $.each(data.results, function(index, user) {
+                            resultados.append('<p>Nombre y Apellido: ' + user.name.first + ' ' + user.name.last + '</p>');
+                            resultados.append('<p>Mail: ' + user.email + '</p>');
+                            resultados.append('<hr>');
+                        });
+                    },
+                    error: function(error) {
+                        console.log('Error al hacer la solicitud a la API: ' + error.statusText);
+                    }
+                });
+            }
+
+            // la funcion y el boton se asocian
+            $('#datos').click(function() {
+                cargarDatosAleatorios();
+            });
+
+            // se cargo los datos aleatorios
+            cargarDatosAleatorios();
+        });
+    </script>
+</body>
+</html>

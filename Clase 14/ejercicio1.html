@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consulta de Clima</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Consulta del Clima en Cordoba</h2>
+    <div id="clima"></div>
+
+    <script>
+        $(document).ready(function() {
+            // ID de la ciudad de Córdoba, Argentina en OpenWeatherMap
+            var cityId = 3860259;
+            // Clave de la API
+            var apiKey = "bba0d2fe4252bd9f174dc0f881453954";
+            var apiUrl = "https://api.openweathermap.org/data/2.5/weather?id=" + cityId + "&appid=" + apiKey;
+
+            $.ajax({
+                url: apiUrl,
+                method: "GET",
+                dataType: "json",
+                success: function(data) {
+                    var ciudad = data.name;
+                    var tempKelvin = data.main.temp;
+                    var descripcion = data.weather[0].description;
+                    // Conversión de temperatura de kelvin a grados Celsius
+                    var tempCelsius = tempKelvin - 273.15;
+                    var mensaje = "El clima en " + ciudad + " es " + descripcion + " con una temperatura de " + tempCelsius.toFixed(2) + "°C.";
+
+                    // Mostrar el resultado en el elemento con id "clima"
+                    $("#clima").text(mensaje);
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error al obtener datos del clima: " + error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
